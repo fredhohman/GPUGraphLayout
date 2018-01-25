@@ -152,7 +152,7 @@ int main(int argc, const char **argv)
                 layout.writeToFile(op1.c_str());
 
                 std::string op2(out_path);
-                op1.append("/").append(std::to_string(iteration)).append(".png");
+                op2.append("/").append(std::to_string(iteration)).append(".png");
                 layout.writeToPNG(framesize, framesize, op2.c_str());
             }
 
