@@ -146,6 +146,14 @@ int main(int argc, const char **argv)
                 layout.writeToBin(op.c_str());
             } else if (output_format == "csv") {
                 layout.writeToFile(op.c_str());
+            } else if (output_format == "csv_png") {
+                std::string op1(out_path);
+                op1.append("/").append(std::to_string(iteration)).append(".csv");
+                layout.writeToFile(op1.c_str());
+
+                std::string op2(out_path);
+                op1.append("/").append(std::to_string(iteration)).append(".png");
+                layout.writeToPNG(framesize, framesize, op2.c_str());
             }
 
             printf("done.\n");

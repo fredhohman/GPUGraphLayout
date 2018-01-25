@@ -202,11 +202,11 @@ namespace RPGraph
 
     void GraphLayout::writeToFile(const char *path)
     {
-        if (is_file_exists(path))
-        {
-            printf("Error: File exists at %s\n", path);
-            exit(EXIT_FAILURE);
-        }
+        // if (is_file_exists(path))
+        // {
+        //     printf("Error: File exists at %s\n", path);
+        //     exit(EXIT_FAILURE);
+        // }
 
         std::ofstream out_file(path);
 
@@ -220,11 +220,11 @@ namespace RPGraph
 
     void GraphLayout::writeToBin(const char *path)
     {
-        if (is_file_exists(path))
-        {
-            printf("Error: File exists at %s\n", path);
-            exit(EXIT_FAILURE);
-        }
+        // if (is_file_exists(path))
+        // {
+        //     printf("Error: File exists at %s\n", path);
+        //     exit(EXIT_FAILURE);
+        // }
 
         std::ofstream out_file(path);
         size_t buffer_size = sizeof(nid_t) + sizeof(float) +  sizeof(float);
