@@ -28,6 +28,7 @@
 #include <fstream>
 #include <cmath>
 #include <limits>
+#include <algorithm>
 
 namespace RPGraph
 {
@@ -212,7 +213,11 @@ namespace RPGraph
 
         for (nid_t n = 0; n < graph.num_nodes(); ++n)
         {
-            out_file << n << "," << getX(n) << "," << getY(n) << "\n";
+            auto it = std::find_if(graph.node_map.begin(), graph.node_map.end(),
+				[&n](const std::pair<nid_t, nid_t> &p) {
+					return p.second == n;
+				});
+            out_file << it->first << "," << getX(n) << "," << getY(n) << "\n";
         }
 
         out_file.close();
