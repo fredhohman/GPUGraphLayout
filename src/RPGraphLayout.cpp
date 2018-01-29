@@ -29,6 +29,7 @@
 #include <cmath>
 #include <limits>
 #include <algorithm>
+#include <unordered_map>
 
 namespace RPGraph
 {
@@ -210,14 +211,15 @@ namespace RPGraph
         // }
 
         std::ofstream out_file(path);
-
+	std::unordered_map<nid_t, nid_t> reverse_map;
+	
+	for (const std::pair<nid_t, nid_t> &p : graph.node_map) {
+		reverse_map[p.second] = p.first;
+	} 
         for (nid_t n = 0; n < graph.num_nodes(); ++n)
+
         {
-            auto it = std::find_if(graph.node_map.begin(), graph.node_map.end(),
-				[&n](const std::pair<nid_t, nid_t> &p) {
-					return p.second == n;
-				});
-            out_file << it->first << "," << getX(n) << "," << getY(n) << "\n";
+            out_file << reverse_map[n] << "," << getX(n) << "," << getY(n) << "\n";
         }
 
         out_file.close();
