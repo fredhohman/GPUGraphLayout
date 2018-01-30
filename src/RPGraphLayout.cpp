@@ -211,13 +211,15 @@ namespace RPGraph
         // }
 
         std::ofstream out_file(path);
-	std::unordered_map<nid_t, nid_t> reverse_map;
-	
-	for (const std::pair<nid_t, nid_t> &p : graph.node_map) {
-		reverse_map[p.second] = p.first;
-	} 
-        for (nid_t n = 0; n < graph.num_nodes(); ++n)
+	    std::unordered_map<nid_t, nid_t> reverse_map;
 
+        reverse_map.reserve(graph.num_nodes());
+        for (const std::pair<nid_t, nid_t> &p : graph.node_map)
+        {
+            reverse_map[p.second] = p.first;
+        }
+
+        for (nid_t n = 0; n < graph.num_nodes(); ++n)
         {
             out_file << reverse_map[n] << "," << getX(n) << "," << getY(n) << "\n";
         }
